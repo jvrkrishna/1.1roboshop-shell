@@ -10,5 +10,5 @@ unzip /tmp/frontend.zip
 #we have to configure roboshop.conf file
 echo -e "\e[33mEnabling and restarting nginx server\e[0m"
 systemctl enable nginx
-systemctl restar nginx
+systemctl restart nginx
 echo -e "\e[33mSuccessfully started\e[0m"
