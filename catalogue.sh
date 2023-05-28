@@ -15,10 +15,10 @@ cd /app
 echo -e "\e[33mInstalling Dependencies\e[0m"
 npm install &>> /tmp/roboshop.log
 echo -e "\e[33mConfiguring Service file\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service &>> /tmp/roboshop.log
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> /tmp/roboshop.log
 systemctl daemon-reload
 echo -e "\e[33mInstalling repo file\e[0m"
-cp Mongo.repo /etc/yum.repos.d/mongodb.repo &>> /tmp/roboshop.log
+cp /home/centos/roboshop-shell/Mongo.repo /etc/yum.repos.d/mongodb.repo &>> /tmp/roboshop.log
 yum install mongodb-org-shell -y &>> /tmp/roboshop.log
 echo -e "\e[33mConfiguring host\e[0m"
 mongo --host mongodb-dev.rkdevops.store </app/schema/catalogue.js &>> /tmp/roboshop.log
