@@ -23,5 +23,5 @@ yum install mongodb-org-shell -y &>> /tmp/roboshop.log
 echo -e "\e[33mConfiguring host\e[0m"
 mongo --host mongodb-dev.rkdevops.store </app/schema/catalogue.js &>> /tmp/roboshop.log
 echo -e "\e[33mEnabling and restarting Server\e[0m"
-systemctl enable catalogue
+systemctl enable catalogue &>> /tmp/roboshop.log
 systemctl restart catalogue
