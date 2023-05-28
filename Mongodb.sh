@@ -6,5 +6,5 @@ echo -e "\e[33mUpdate Listen address\e[0m"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 echo -e "\e[33mEnabling and starting Mongodb server\e[0m"
 systemctl enable mongod
-systemctl start mongod
+systemctl restart mongod
 
