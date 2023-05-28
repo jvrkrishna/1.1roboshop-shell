@@ -8,7 +8,7 @@ cd /usr/share/nginx/html
 echo -e "\e[33mUnzipping the new app content\e[0m"
 unzip /tmp/frontend.zip &>>/tmp/roboshop.log
 echo -e "\e[33mMaking roboshop.conf\e[0m"
-cp roboshop.conf  /etc/nginx/default.d/roboshop.conf
+cp /home/centos/roboshop-shell/roboshop.conf  /etc/nginx/default.d/roboshop.conf
 echo -e "\e[33mEnabling and restarting nginx server\e[0m"
 systemctl enable nginx &>>/tmp/roboshop.log
 systemctl restart nginx &>>/tmp/roboshop.log
