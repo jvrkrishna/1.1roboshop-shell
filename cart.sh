@@ -1,5 +1,5 @@
 echo -e '\e[33mDownloading Nodejs\e[30m'
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/roboshop.log
+curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>/tmp/roboshop.log
 echo -e '\e[33mInstalling Nodejs\e[30m'
 yum install nodejs -y &>>/tmp/roboshop.log
 useradd roboshop
