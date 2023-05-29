@@ -5,11 +5,12 @@ yum install nodejs -y &>> /tmp/roboshop.log
 useradd roboshop
 mkdir /app
 echo -e '\e[33mAdding and unzipping new app content\e[30m'
-curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>>/tmp/roboshop.log
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip
 cd /app
-unzip /tmp/cart.zip &>>/tmp/roboshop.log
+unzip /tmp/cart.zip
 cd /app
 echo -e '\e[33mInstalling dependencies\e[30m'
+cd /app
 npm install
 echo -e '\e[33mcreating service file\e[30m'
 cp cart.service /etc/systemd/system/cart.service &>>/tmp/roboshop.log
