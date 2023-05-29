@@ -10,7 +10,7 @@ cd /app
 unzip /tmp/cart.zip &>>/tmp/roboshop.log
 cd /app
 echo -e '\e[33mInstalling dependencies\e[30m'
-npm install &>>/tmp/roboshop.log
+npm install
 echo -e '\e[33mcreating service file\e[30m'
 cp cart.service /etc/systemd/system/cart.service &>>/tmp/roboshop.log
 systemctl daemon-reload
