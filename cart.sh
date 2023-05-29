@@ -1,7 +1,7 @@
 echo -e '\e[33mDownloading Nodejs\e[30m'
-curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>/tmp/roboshop.log
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> /tmp/roboshop.log
 echo -e '\e[33mInstalling Nodejs\e[30m'
-yum install nodejs -y &>>/tmp/roboshop.log
+yum install nodejs -y &>> /tmp/roboshop.log
 useradd roboshop
 mkdir /app
 echo -e '\e[33mAdding and unzipping new app content\e[30m'
@@ -10,7 +10,6 @@ cd /app
 unzip /tmp/cart.zip &>>/tmp/roboshop.log
 cd /app
 echo -e '\e[33mInstalling dependencies\e[30m'
-curl -qL https://www.npmjs.com/install.sh | sh
 npm install
 echo -e '\e[33mcreating service file\e[30m'
 cp cart.service /etc/systemd/system/cart.service &>>/tmp/roboshop.log
