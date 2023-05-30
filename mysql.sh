@@ -1,5 +1,5 @@
 echo -e "\e[33mConfiguring mysql repo\e[0m"
-yum module disable mysql -y
+yum module disable mysql -y &>> /tmp/roboshop.log
 cp mysql.repo /etc/yum.repos.d/mysql.repo &>> /tmp/roboshop.log
 echo -e "\e[33mInstalling mysql server\e[0m"
 yum install mysql-community-server -y &>> /tmp/roboshop.log
