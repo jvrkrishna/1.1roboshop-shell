@@ -11,7 +11,7 @@ echo -e "\e[33mUnzipping new app content\e[0m"
 unzip /tmp/shipping.zip &>> /tmp/roboshop.log
 cd /app
 echo -e "\e[33mCleaning packages\e[0m"
-mvn clean package
+mvn clean package &>> /tmp/roboshop.log
 mv target/shipping-1.0.jar shipping.jar &>> /tmp/roboshop.log
 echo -e "\e[33mCreating service file\e[0m"
 cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>> /tmp/roboshop.log
