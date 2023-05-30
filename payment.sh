@@ -14,5 +14,5 @@ echo -e "\e[33mconfiguring service file\e[0m"
 cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>> /tmp/roboshop.log
 systemctl daemon-reload &>> /tmp/roboshop.log
 echo -e "\e[33mEnabling and restarting the payment service\e[0m"
-systemctl enable payment
+systemctl enable payment &>> /tmp/roboshop.log
 systemctl restart payment
