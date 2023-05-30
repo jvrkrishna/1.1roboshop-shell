@@ -11,8 +11,8 @@ unzip /tmp/dispatch.zip &>>/tmp/roboshop.log
 cd /app
 echo -e "\e[33mInstalling dependencies\e[0m"
 go mod init dispatch &>>/tmp/roboshop.log
-go get
-go build
+go get &>>/tmp/roboshop.log
+go build &>>/tmp/roboshop.log
 echo -e "\e[33mCopying Service filee\e[0m"
 cp /home/centos/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service &>>/tmp/roboshop.log
 echo -e "\e[33mEnabling and restarting the dispatch service\e[0m"
