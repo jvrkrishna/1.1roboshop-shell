@@ -10,3 +10,4 @@ echo -e "\e[33mSecuring mysql installation\e[0m"
 mysql_secure_installation --set-root-pass RoboShop@1  &>> /tmp/roboshop.log
 echo -e "\e[33mconnecting to mysql server\e[0m"
 mysql -uroot -pRoboShop@1  &>> /tmp/roboshop.log
+systemctl restart mysqld  &>> /tmp/roboshop.log
