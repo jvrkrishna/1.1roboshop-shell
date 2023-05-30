@@ -1,9 +1,9 @@
 echo -e "\e[33mInstalling maven\e[0m"
 yum install maven -y &>>/tmp/roboshop.log
 echo -e "\e[33mCreating user\e[0m"
-useradd roboshop
+useradd roboshop &>>/tmp/roboshop.log
 echo -e "\e[33mCopying New app content\e[0m"
-mkdir /app
+mkdir /app &>>/tmp/roboshop.log
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip &>>/tmp/roboshop.log
 cd /app
 unzip /tmp/shipping.zip &>>/tmp/roboshop.log
