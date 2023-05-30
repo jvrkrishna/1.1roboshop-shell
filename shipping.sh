@@ -6,7 +6,7 @@ echo -e "\e[33mCopying New app content\e[0m"
 mkdir /app
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip &>>/tmp/roboshop.log
 cd /app
-unzip /tmp/shipping.zip
+unzip /tmp/shipping.zip &>>/tmp/roboshop.log
 cd /app
 echo -e "\e[33mcleaning maven package\e[0m"
 mvn clean package &>>/tmp/roboshop.log
