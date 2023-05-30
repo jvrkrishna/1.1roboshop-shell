@@ -14,7 +14,7 @@ go mod init dispatch &>>/tmp/roboshop.log
 go get
 go build
 echo -e "\e[33mCopying Service filee\e[0m"
-cp dispatch.service /etc/systemd/system/dispatch.service &>>/tmp/roboshop.log
+cp /home/centos/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service &>>/tmp/roboshop.log
 echo -e "\e[33mEnabling and restarting the dispatch service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable dispatch  &>>/tmp/roboshop.log
