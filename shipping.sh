@@ -12,11 +12,11 @@ echo -e "\e[33mcleaning maven package\e[0m"
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 echo -e "\e[33mCopying service file\e[0m"
-cp shipping.service /etc/systemd/system/shipping.service
+cp Shipping.Service /etc/systemd/system/shipping.service
 systemctl daemon-reload
 echo -e "\e[33mEnabling and restating the service\e[0m"
 systemctl enable shipping
-systemctl start shipping
+systemctl restart shipping
 echo -e "\e[33mLoading mysql schema\e[0m"
 yum install mysql -y
 mysql -h mysql-dev.rkdevops.store -uroot -pRoboShop@1 < /app/schema/shipping.sql
