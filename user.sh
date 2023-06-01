@@ -5,7 +5,7 @@ echo -e '${color}Downloading Nodejs${nocolor}'
 curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>${logfile}
 echo -e '${color}Installing Nodejs${nocolor}'
 yum install nodejs -y &>>${logfile}
-echo -e '${color}Creating ${component}${nocolor}'
+echo -e '${color}Creating oneuser${nocolor}'
 ${component}add roboshop
 mkdir ${app_path}
 cd ${app_path}
