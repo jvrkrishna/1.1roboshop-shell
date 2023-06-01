@@ -36,3 +36,32 @@ yum install mongodb-org -y &>>${logfile}
 echo -e "${color}Loading schema${nocolor}"
 mongo --host mongodb-dev.rkdevops.store <${app_path}/schema/${component}.js &>>${logfile}
 }
+
+maven() {
+  echo -e "${color}Installing Maven${nocolor}"
+  yum install maven -y &>> ${logfile}
+  echo -e "${color}Adding User${nocolor}"
+  useradd roboshop
+  echo -e "${color}Creating app directory${nocolor}"
+  mkdir ${app_path}
+  echo -e "${color}Downloading new app content${nocolor}"
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>> ${logfile}
+  cd ${app_path}
+  echo -e "${color}Unzipping new app content${nocolor}"
+  unzip /tmp/${component}.zip &>> ${logfile}
+  cd ${app_path}
+  echo -e "${color}Cleaning packages${nocolor}"
+  mvn clean package &>> ${logfile}
+  mv target/${component}-1.0.jar ${component}.jar &>> ${logfile}
+  echo -e "${color}Creating service file${nocolor}"
+  cp /home/centos/roboshop-shell/${component}.service /etc/systemd/system/${component}.service &>> ${logfile}
+  systemctl daemon-reload
+  echo -e "${color}Enabling and restaring the service${nocolor}"
+  systemctl enable ${component} &>> ${logfile}
+  systemctl start ${component}
+  echo -e "${color}Installing mysql${nocolor}"
+  yum install mysql -y &>> ${logfile}
+  mysql -h mysql-dev.rkdevops.store -uroot -pRoboShop@1 < ${app_path}/schema/${component}.sql &>> ${logfile}
+  echo -e "${color}restaring the shippping service${nocolor}"
+  systemctl restart ${component} &>> ${logfile}
+}
