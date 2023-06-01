@@ -1,25 +1,25 @@
 source common.sh
 component=cart
 
-echo -e '\e[33mDownloading Nodejs\e[30m'
-curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>/tmp/roboshop.log
-echo -e '\e[33mInstalling Nodejs\e[30m'
-yum install nodejs -y &>>/tmp/roboshop.log
-echo -e '\e[33mCreating user\e[30m'
+echo -e '${color}Downloading Nodejs${nocolor}'
+curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>${logfile}
+echo -e '${color}Installing Nodejs${nocolor}'
+yum install nodejs -y &>>${logfile}
+echo -e '${color}Creating user${nocolor}'
 useradd roboshop
-mkdir /app
-cd /app
-echo -e '\e[33mDownloading and unzipping the new app content\e[30m'
-curl -L -o cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>>/tmp/roboshop.log
-unzip cart.zip &>>/tmp/roboshop.log
-echo -e '\e[33mInstalling dependencies\e[30m'
-npm install &>>/tmp/roboshop.log
-echo -e '\e[33mCreating service file\e[30m'
-cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>>/tmp/roboshop.log
-systemctl daemon-reload &>>/tmp/roboshop.log
-echo -e '\e[33mEnabling and restarting server\e[30m'
-systemctl enable cart &>>/tmp/roboshop.log
-systemctl restart cart &>>/tmp/roboshop.log
+mkdir ${app_path}
+cd ${app_path}
+echo -e '${color}Downloading and unzipping the new app content${nocolor}'
+curl -L -o ${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${logfile}
+unzip ${component}.zip &>>${logfile}
+echo -e '${color}Installing dependencies${nocolor}'
+npm install &>>${logfile}
+echo -e '${color}Creating service file${nocolor}'
+cp /home/centos/roboshop-shell/${component}.service /etc/systemd/system/${component}.service &>>${logfile}
+systemctl daemon-reload &>>${logfile}
+echo -e '${color}Enabling and restarting server${nocolor}'
+systemctl enable ${component} &>>${logfile}
+systemctl restart ${component} &>>${logfile}
 
 
 
