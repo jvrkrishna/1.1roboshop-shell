@@ -73,13 +73,13 @@ python(){
   pip3.6 install -r requirements.txt &>> ${logfile}
   systemd_setup
 }
-goland(){
-  echo -e "\e[33mInstalling golang\e[0m"
-  yum install golang -y &>>/tmp/roboshop.log
+golang(){
+  echo -e "${color}Installing golang${nocolor}"
+  yum install golang -y &>>${logfile}
   app_presetup
-  echo -e "\e[33mInstalling dependencies\e[0m"
-  go mod init dispatch &>>/tmp/roboshop.log
-  go get &>>/tmp/roboshop.log
-  go build &>>/tmp/roboshop.log
+  echo -e "${color}Installing dependencies${nocolor}"
+  go mod init dispatch &>>${logfile}
+  go get &>>${logfile}
+  go build &>>${logfile}
   systemd_setup
 }
