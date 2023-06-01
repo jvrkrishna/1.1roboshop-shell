@@ -65,3 +65,21 @@ maven() {
   systemd_setup
   mysql_schema-setup
 }
+python(){
+  echo -e "${color}Installing python${nocolor}"
+  yum install python36 gcc python3-devel -y &>> ${logfile}
+  app_presetup
+  echo -e "${color}Installing dependencies${nocolor}"
+  pip3.6 install -r requirements.txt &>> ${logfile}
+  systemd_setup
+}
+goland(){
+  echo -e "\e[33mInstalling golang\e[0m"
+  yum install golang -y &>>/tmp/roboshop.log
+  app_presetup
+  echo -e "\e[33mInstalling dependencies\e[0m"
+  go mod init dispatch &>>/tmp/roboshop.log
+  go get &>>/tmp/roboshop.log
+  go build &>>/tmp/roboshop.log
+  systemd_setup
+}
