@@ -1,28 +1,31 @@
-echo -e '\e[33mDownloading Nodejs\e[30m'
-curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>/tmp/roboshop.log
-echo -e '\e[33mInstalling Nodejs\e[30m'
-yum install nodejs -y &>>/tmp/roboshop.log
-echo -e '\e[33mCreating user\e[30m'
+source common.sh
+component=user
+
+echo -e '${color}Downloading Nodejs${nocolor}'
+curl -sL https://rpm.nodesource.com/setup_18.x | sudo -E bash - &>>${logfile}
+echo -e '${color}Installing Nodejs${nocolor}'
+yum install nodejs -y &>>${logfile}
+echo -e '${color}Creating user${nocolor}'
 useradd roboshop
-mkdir /app
-cd /app
-echo -e '\e[33mDownloading and unzipping the new app content\e[30m'
-curl -L -o user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip &>>/tmp/roboshop.log
-unzip user.zip &>>/tmp/roboshop.log
-echo -e '\e[33mInstalling dependencies\e[30m'
-npm install &>>/tmp/roboshop.log
-echo -e '\e[33mCreating service file\e[30m'
-cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>>/tmp/roboshop.log
-systemctl daemon-reload &>>/tmp/roboshop.log
-echo -e '\e[33mDownloading mongodb\e[30m'
-cp /home/centos/roboshop-shell/Mongo.repo /etc/yum.repos.d/mogo.repo &>>/tmp/roboshop.log
-echo -e '\e[33mInstalling mongodb\e[30m'
-yum install mongodb-org -y &>>/tmp/roboshop.log
-echo -e '\e[33mLoading schema\e[30m'
-mongo --host mongodb-dev.rkdevops.store </app/schema/user.js &>>/tmp/roboshop.log
-echo -e '\e[33mEnabling and restarting server\e[30m'
-systemctl enable user &>>/tmp/roboshop.log
-systemctl restart user &>>/tmp/roboshop.log
+mkdir ${app_path}
+cd ${app_path}
+echo -e '${color}Downloading and unzipping the new app content${nocolor}'
+curl -L -o user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip &>>${logfile}
+unzip user.zip &>>${logfile}
+echo -e '${color}Installing dependencies${nocolor}'
+npm install &>>${logfile}
+echo -e '${color}Creating service file${nocolor}'
+cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>>${logfile}
+systemctl daemon-reload &>>${logfile}
+echo -e '${color}Downloading mongodb${nocolor}'
+cp /home/centos/roboshop-shell/Mongo.repo /etc/yum.repos.d/mogo.repo &>>${logfile}
+echo -e '${color}Installing mongodb${nocolor}'
+yum install mongodb-org -y &>>${logfile}
+echo -e '${color}Loading schema${nocolor}'
+mongo --host mongodb-dev.rkdevops.store <${app_path}/schema/user.js &>>${logfile}
+echo -e '${color}Enabling and restarting server${nocolor}'
+systemctl enable user &>>${logfile}
+systemctl restart user &>>${logfile}
 
 
 
