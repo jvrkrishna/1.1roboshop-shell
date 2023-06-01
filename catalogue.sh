@@ -1,6 +1,7 @@
 component=catalogue
-color="\e[33m"
+color="\e[36m"
 nocolor="\e[0m"
+
 echo -e "${color}Configuring Nodejs Server${nocolor}"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> /tmp/roboshop.log
 echo -e "${color}Installing  Nodejs Server${nocolor}"
