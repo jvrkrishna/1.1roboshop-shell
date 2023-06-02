@@ -25,7 +25,7 @@ nodejs(){
   status $?
   echo -e "${color}Adding User${nocolor}"
   id roboshop  &>>$log_file
-  if [ $1 -ne 0 ]; then
+  if [ $? -ne 0 ]; then
        useadd roboshop &>>$log_file
   fi
   status $?
