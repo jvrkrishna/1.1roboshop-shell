@@ -27,7 +27,7 @@ nodejs(){
   useradd roboshop
   status $?
   echo -e "${color}Downloading new app Content${nocolor}"
-  mkdir ${app_path}
+  mkdir ${app_path} &>>${logfile}
   cd ${app_path}
   curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${logfile}
   status $?
