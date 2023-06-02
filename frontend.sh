@@ -11,7 +11,7 @@ cd /usr/share/nginx/html &>>${logfile}
 unzip /tmp/frontend.zip &>>${logfile}
 status
 echo -e "${color}Configuring Reverse proxy seerver${nocolor}"
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${logfile}
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${logfile}
 status
 echo -e "${color}Installing Nginx Server${nocolor}"
 systemctl enable nginx &>>${logfile}
