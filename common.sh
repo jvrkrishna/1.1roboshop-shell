@@ -10,3 +10,10 @@ status(){
     echo Failure
   fi
 }
+
+service_start(){
+  echo -e "${color}Enabling and restarting ${component} Server${nocolor}"
+  systemctl enable mongod &>>${logfile}
+  status $?
+  systemctl restart mongod
+}

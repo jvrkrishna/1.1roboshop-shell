@@ -14,7 +14,7 @@ status $?
 echo -e "${color}Configuring Reverse proxy seerver${nocolor}"
 cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${logfile}
 status $?
-echo -e "${color}Installing Nginx Server${nocolor}"
+echo -e "${color}Enabling and restarting Nginx Server${nocolor}"
 systemctl enable nginx &>>${logfile}
 systemctl restart nginx
 status $?
