@@ -12,4 +12,4 @@ status $?
 echo -e "${color}Enabling and restarting Mongodb Server${nocolor}"
 systemctl enable mongod &>>${logfile}
 status $?
-systemctl start mongod
+systemctl restart mongod
