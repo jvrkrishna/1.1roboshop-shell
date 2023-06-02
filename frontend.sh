@@ -1,11 +1,6 @@
 source common.sh
 echo -e "${color}Installing Nginx Server${nocolor}"
 yum install nginx -y &>>${logfile}
-if [ $1 -eq 0 ];then
-  echo SUCCESS
-else
-  echo Failure
-fi
 echo -e "${color}Removing old content${nocolor}"
 rm -rf /usr/share/nginx/html/* &>>${logfile}
 echo -e "${color}Downloading new app content${nocolor}"
