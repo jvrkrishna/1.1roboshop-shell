@@ -6,9 +6,8 @@ status $?
 echo -e "${color}Installing Mongodb Server${nocolor}"
 yum install mongodb-org -y &>>${logfile}
 status $?
-systemctl restart mongod
 echo -e "${color}Configuring localhost File${nocolor}"
-sed -i 's/127.0.0.1/0.0.0.0'  /etc/mongod.conf &>>${logfile}
+sed -i -e 's/127.0.0.1/0.0.0.0'  /etc/mongod.conf &>>${logfile}
 status $?
 echo -e "${color}Enabling and restarting Mongodb Server${nocolor}"
 systemctl enable mongod &>>${logfile}
