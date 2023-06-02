@@ -18,25 +18,29 @@ service_start(){
   systemctl restart ${component}
 }
 
+app_presetup(){
+  echo -e "${color}Adding User${nocolor}"
+    id roboshop &>>${logfile}
+    if [ $? -ne 0 ]; then
+      useradd roboshop &>>${logfile}
+    fi
+    status $?
+    echo -e "${color}Downloading new app Content${nocolor}"
+    mkdir ${app_path} &>>${logfile}
+    cd ${app_path}
+    curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${logfile}
+    status $?
+    echo -e "${color}Extracting the app Content${nocolor}"
+    unzip /tmp/${component}.zip &>>${logfile}
+    status $?
+}
+
 nodejs(){
   echo -e "${color}Installing Nodejs Server${nocolor}"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${logfile}
   yum install nodejs -y &>>${logfile}
   status $?
-  echo -e "${color}Adding User${nocolor}"
-  id roboshop &>>${logfile}
-  if [ $? -ne 0 ]; then
-    useradd roboshop &>>${logfile}
-  fi
-  status $?
-  echo -e "${color}Downloading new app Content${nocolor}"
-  mkdir ${app_path} &>>${logfile}
-  cd ${app_path}
-  curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${logfile}
-  status $?
-  echo -e "${color}Extracting the app Content${nocolor}"
-  unzip /tmp/${component}.zip &>>${logfile}
-  status $?
+  app_presetup
   echo -e "${color}Installing Dependencies${nocolor}"
   cd ${app_path}
   npm install &>>${logfile}
