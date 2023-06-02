@@ -8,7 +8,7 @@ app_presetup(){
     useradd roboshop
     echo -e "${color}Make directory${nocolor}"
     mkdir ${app_path} &>> ${logfile}
-    echo -e "${color}Changing code Server${nocolor}"
+    echo -e "${color}Downloading the new content to the Server${nocolor}"
     curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>> ${logfile}
     echo -e "${color}Unzipping code${nocolor}"
     cd ${app_path}
