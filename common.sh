@@ -44,11 +44,11 @@ nodejs(){
   echo -e "${color}Installing Dependencies${nocolor}"
   cd ${app_path}
   npm install &>>${logfile}
-   status $?
+  status $?
   echo -e "${color}Copying Service File and starting the service${nocolor}"
   cp /home/centos/roboshop-shell/${component}.service  /etc/systemd/system/${component}.service &>>${logfile}
   systemctl daemon-reload &>>${logfile}
-   status $?
+  status $?
   service_start
 }
 
