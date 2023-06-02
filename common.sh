@@ -96,6 +96,7 @@ python(){
   status $?
   echo -e "${color}Copying service file${nocolor}"
   cp /home/centos/roboshop-shell/${component}.service  /etc/systemd/system/${component}.service &>>${logfile}
+  sed -i "s/app_password/$app_password/" /etc/systemd/system/${component}.service &>>${logfile}
   systemctl daemon-reload &>>${logfile}
   status $?
   service_start
