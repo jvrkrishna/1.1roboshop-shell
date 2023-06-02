@@ -17,3 +17,4 @@ status $?
 echo -e "${color}Installing Nginx Server${nocolor}"
 systemctl enable nginx &>>${logfile}
 systemctl restart nginx
+status $?
