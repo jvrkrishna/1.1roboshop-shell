@@ -18,14 +18,14 @@ app_presetup(){
           echo SUCCESS
         else
           echo FAILURE
-        fi
+     fi
     echo -e "${color}Downloading the new content to the Server${nocolor}"
     curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>> ${logfile}
      if [ $? -eq 0 ]; then
           echo SUCCESS
         else
           echo FAILURE
-        fi
+     fi
     echo -e "${color}Unzipping code${nocolor}"
     cd ${app_path}
     unzip /tmp/$component.zip &>> ${logfile}
@@ -33,7 +33,7 @@ app_presetup(){
           echo SUCCESS
         else
           echo FAILURE
-        fi
+     fi
 }
 
 systemd_setup(){
@@ -43,7 +43,7 @@ systemd_setup(){
         echo SUCCESS
       else
         echo FAILURE
-      fi
+   fi
   systemctl daemon-reload
   echo -e "${color}Enabling and restarting Server${nocolor}"
   systemctl enable $component &>> ${logfile}
@@ -51,7 +51,7 @@ systemd_setup(){
         echo SUCCESS
       else
         echo FAILURE
-      fi
+   fi
   systemctl restart $component
 }
 
