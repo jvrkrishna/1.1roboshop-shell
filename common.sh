@@ -27,7 +27,7 @@ nodejs(){
   id roboshop &>>${logfile}
   if [ $? -ne 0 ]; then
     useradd roboshop &>>${logfile}
-  f1
+  fi
   status $?
   echo -e "${color}Downloading new app Content${nocolor}"
   mkdir ${app_path} &>>${logfile}
