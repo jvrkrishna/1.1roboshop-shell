@@ -24,7 +24,10 @@ nodejs(){
   yum install nodejs -y &>>${logfile}
   status $?
   echo -e "${color}Adding User${nocolor}"
-  useradd roboshop
+  id roboshop  &>>$log_file
+  if [ $1 -ne 0 ]; then
+       useadd roboshop &>>$log_file
+  fi
   status $?
   echo -e "${color}Downloading new app Content${nocolor}"
   mkdir ${app_path} &>>${logfile}
