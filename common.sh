@@ -36,7 +36,7 @@ nodejs(){
   status $?
   echo -e "${color}Installing Dependencies${nocolor}"
   cd ${app_path}
-  npm install
+  npm install &>>${logfile}
    status $?
   echo -e "${color}Copying Service File and starting the service${nocolor}"
   cp /home/centos/roboshop-shell/${component}.service  /etc/systemd/system/${component}.service &>>${logfile}
