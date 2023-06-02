@@ -79,7 +79,7 @@ maven(){
   systemctl daemon-reload &>>${logfile}
   status $?
   echo -e "${color}Installing mysql${nocolor}"
-  yum install mysql - &>>${logfile}
+  yum install mysql -y &>>${logfile}
   status $?
   echo -e "${color}Setting mysql schema${nocolor}"
   mysql -h mysql-dev.rkdevops.store -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${logfile}
