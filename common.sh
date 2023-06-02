@@ -66,9 +66,7 @@ maven(){
   echo -e "${color}Installing ${component} server${nocolor}"
   yum install maven -y &>>${logfile}
   status $?
-
   app_presetup
-
   echo -e "${color}Cleaning ${component} package${nocolor}"
   cd /app
   mvn clean package &>>${logfile}
@@ -84,6 +82,21 @@ maven(){
   echo -e "${color}Setting mysql schema${nocolor}"
   mysql -h mysql-dev.rkdevops.store -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${logfile}
   status $?
+  service_start
+}
 
+python(){
+  echo -e "${color}Installing Python Server${nocolor}"
+  yum install python36 gcc python3-devel -y
+  status $?
+  app_presetup
+  echo -e "${color}Installing Dependencies${nocolor}"
+  cd /app
+  pip3.6 install -r requirements.txt
+  status $?
+  echo -e "${color}Copying service file${nocolor}"
+  cp /home/centos/roboshop-shell/${component}.service  /etc/systemd/system/${component}.service &>>${logfile}
+  systemctl daemon-reload
+  status $?
   service_start
 }
