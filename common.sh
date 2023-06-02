@@ -87,16 +87,16 @@ maven(){
 
 python(){
   echo -e "${color}Installing Python Server${nocolor}"
-  yum install python36 gcc python3-devel -y
+  yum install python36 gcc python3-devel -y &>>${logfile}
   status $?
   app_presetup
   echo -e "${color}Installing Dependencies${nocolor}"
   cd /app
-  pip3.6 install -r requirements.txt
+  pip3.6 install -r requirements.txt &>>${logfile}
   status $?
   echo -e "${color}Copying service file${nocolor}"
   cp /home/centos/roboshop-shell/${component}.service  /etc/systemd/system/${component}.service &>>${logfile}
-  systemctl daemon-reload
+  systemctl daemon-reload &>>${logfile}
   status $?
   service_start
 }
