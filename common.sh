@@ -100,3 +100,20 @@ python(){
   status $?
   service_start
 }
+
+dispatch(){
+  echo -e "${color}Installing golang Server${nocolor}"
+  yum install golang -y &>>${logfile}
+  status $?
+  app_presetup
+  echo -e "${color}Installing Dependencies${nocolor}"
+  cd /app
+  go mod init ${component} &>>${logfile}
+  go get &>>${logfile}
+  go build &>>${logfile}
+  echo -e "${color}creating service file${nocolor}"
+  cp /home/centos/roboshop-shell/${component}.service  /etc/systemd/system/${component}.service &>>${logfile}
+  systemctl daemon-reload &>>${logfile}
+  status $?
+  service_start
+}
