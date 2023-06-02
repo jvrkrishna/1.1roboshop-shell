@@ -3,55 +3,41 @@ nocolor="\e[0m"
 logfile="/tmp/roboshop.log"
 app_path="/app"
 
+stat_check(){
+  if [ $? -eq 0 ]; then
+        echo SUCCESS
+      else
+        echo FAILURE
+      fi
+}
+
 app_presetup(){
     echo -e "${color}Adding user${nocolor}"
-    useradd roboshop
-    if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FAILURE
+    id roboshop  &>>$log_file
+    if [ $? -ne 0 ]; then
+         useadd roboshop &>>$log_file
     fi
+    stat_check
 
     echo -e "${color}Make directory${nocolor}"
     mkdir ${app_path} &>> ${logfile}
-     if [ $? -eq 0 ]; then
-          echo SUCCESS
-        else
-          echo FAILURE
-     fi
+     stat_check
     echo -e "${color}Downloading the new content to the Server${nocolor}"
     curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>> ${logfile}
-     if [ $? -eq 0 ]; then
-          echo SUCCESS
-        else
-          echo FAILURE
-     fi
+     stat_check
     echo -e "${color}Unzipping code${nocolor}"
     cd ${app_path}
     unzip /tmp/$component.zip &>> ${logfile}
-     if [ $? -eq 0 ]; then
-          echo SUCCESS
-        else
-          echo FAILURE
-     fi
-}
+    stat_check
 
 systemd_setup(){
   echo -e "${color}Configuring Service file${nocolor}"
   cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service &>> ${logfile}
-   if [ $? -eq 0 ]; then
-        echo SUCCESS
-      else
-        echo FAILURE
-   fi
+  stat_check
   systemctl daemon-reload
   echo -e "${color}Enabling and restarting Server${nocolor}"
   systemctl enable $component &>> ${logfile}
-   if [ $? -eq 0 ]; then
-        echo SUCCESS
-      else
-        echo FAILURE
-   fi
+  stat_check
   systemctl restart $component
 }
 
