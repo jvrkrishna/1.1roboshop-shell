@@ -10,3 +10,5 @@ status $?
 echo -e "${color}Configuring localhost File${nocolor}"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf&>>${logfile}
 status $?
+systemctl enable mongod
+systemctl restart mongod
