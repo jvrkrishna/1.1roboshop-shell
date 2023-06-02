@@ -4,7 +4,7 @@ logfile="/tmp/roboshop.log"
 app_path="/app"
 
 status(){
-  if [ $? -eq 0 ];then
+  if [ $1 -eq 0 ];then
     echo SUCCESS
   else
     echo Failure
