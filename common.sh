@@ -8,6 +8,7 @@ status(){
     echo SUCCESS
   else
     echo Failure
+    exit1
   fi
 }
 
