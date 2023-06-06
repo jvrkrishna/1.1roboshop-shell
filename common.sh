@@ -55,7 +55,7 @@ nodejs(){
 
 mongo_schema(){
   echo -e "${color}Copying mongo repo${nocolor}"
-  cp /home/centos/roboshop-shell/mongo.repo  /etc/yum.repos.d/mongo.repo &>>${logfile}
+  cp /home/centos/roboshop-shell/mongodb.repo  /etc/yum.repos.d/mongodb.repo &>>${logfile}
   status $?
   echo -e "${color}Installing mongo schema${nocolor}"
   yum install mongodb-org -y &>>${logfile}
