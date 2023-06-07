@@ -60,7 +60,6 @@ mongo_schema(){
   echo -e "${color}Installing mongo schema${nocolor}"
   yum install mongodb-org -y &>>${logfile}
   mongo --host 172.31.13.233 </app/schema/${component}.js &>>${logfile}
-  #mongodb-dev.rkdevops.store
   status $?
 }
 
