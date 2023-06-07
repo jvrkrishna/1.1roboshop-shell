@@ -27,6 +27,7 @@ app_presetup(){
     fi
     status $?
     echo -e "${color}Downloading new app Content${nocolor}"
+    rm -rf ${app_path} &>>${logfile}
     mkdir ${app_path} &>>${logfile}
     cd ${app_path}
     curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${logfile}
@@ -55,7 +56,7 @@ nodejs(){
 
 mongo_schema(){
   echo -e "${color}Copying mongo repo${nocolor}"
-  cp /home/centos/roboshop-shell/mongodb.repo  /etc/yum.repos.d/mongodb.repo &>>${logfile}
+  cp /home/centos/roboshop-shell/mongo.repo  /etc/yum.repos.d/mongodb.repo &>>${logfile}
   status $?
   echo -e "${color}Installing mongo schema${nocolor}"
   yum install mongodb-org-shell -y &>>${logfile}
