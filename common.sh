@@ -58,7 +58,7 @@ mongo_schema(){
   cp /home/centos/roboshop-shell/mongodb.repo  /etc/yum.repos.d/mongodb.repo &>>${logfile}
   status $?
   echo -e "${color}Installing mongo schema${nocolor}"
-  yum install mongodb-org -y &>>${logfile}
+  yum install mongodb-org-shell -y &>>${logfile}
   mongo --host 172.31.13.233 </app/schema/${component}.js &>>${logfile}
   status $?
 }
