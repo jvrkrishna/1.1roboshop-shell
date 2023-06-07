@@ -3,6 +3,7 @@ source common.sh
 echo -e "${color}Installing Nginx Server${nocolor}"
 yum install nginx -y &>>${logfile}
 status $?
+systemctl restart nginx
 echo -e "${color}Removing old content${nocolor}"
 rm -rf /usr/share/nginx/html/* &>>${logfile}
 status $?
@@ -16,5 +17,5 @@ cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf 
 status $?
 echo -e "${color}Enabling and restarting Nginx Server${nocolor}"
 systemctl enable nginx &>>${logfile}
-systemctl start nginx
+systemctl restart nginx
 status $?
