@@ -14,6 +14,3 @@ service_start
 echo -e "${color}Securing installation for mysql${nocolor}"
 mysql_secure_installation --set-root-pass RoboShop@1 &>>${logfile}
 status $?
-echo -e "${color}Just trying to login with username and password${nocolor}"
-mysql -uroot -pRoboShop@1 &>>${logfile}
-status $?
