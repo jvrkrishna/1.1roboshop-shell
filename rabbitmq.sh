@@ -9,6 +9,6 @@ echo -e "${color}Installing ${component} Server${nocolor}"
 yum install ${component} -y &>>${logfile}
 status $?
 service_start
-rabbitmqctl add_user roboshop roboshop123
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl add_user roboshop roboshop123 &>>${logfile}
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${logfile}
 
