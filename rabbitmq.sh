@@ -10,8 +10,13 @@ yum install ${component} -y &>>${logfile}
 status $?
 service_start
 echo -e "${color}Setting Permissions to Default user${nocolor}"
-rabbitmqctl add_user roboshop roboshop123 &>>${logfile}
-status $?
+id roboshop &>>${logfile}
+    if [ $? -ne 0 ]; then
+      rabbitmqctl add_user roboshop roboshop123 &>>${logfile}
+    fi
+    status $?
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${logfile}
 status $?
+
+    
 
