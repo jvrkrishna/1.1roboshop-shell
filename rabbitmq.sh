@@ -9,7 +9,6 @@ echo -e "${color}Installing ${component} Server${nocolor}"
 yum install ${component} -y &>>${logfile}
 status $?
 service_start
-status $?
 echo -e "${color}Setting Permissions to Default user${nocolor}"
 rabbitmqctl add_user roboshop roboshop123
 status $?
