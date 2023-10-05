@@ -10,6 +10,7 @@ yum install rabbitmq-server -y &>>${logfile}
 status $?
 echo -e "${color}Setting Permissions to Default user${nocolor}"
 rabbitmqctl add_user roboshop roboshop123
+status $?
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 status $?
 service_start
