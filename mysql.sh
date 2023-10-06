@@ -12,5 +12,5 @@ yum install mysql-community-server -y &>>${logfile}
 status $?
 service_start
 echo -e "${color}Securing installation for mysql${nocolor}"
-mysql_secure_installation --set-root-pass $1 &>>${logfile}
+mysql_secure_installation --set-root-pass RoboShop@1 &>>${logfile}
 status $?
