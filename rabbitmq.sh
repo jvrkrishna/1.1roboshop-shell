@@ -9,7 +9,7 @@ echo -e "${color}Installing ${component} Server${nocolor}"
 yum install ${component} -y &>>${logfile}
 status $?
 service_start
-echo -e "${color}Add ${component} Application user${nocolor}"
+echo -e "${color}Adding ${component} Application user${nocolor}"
 rabbitmqctl add_user roboshop roboshop123 &>>${logfile}
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${logfile}
 
