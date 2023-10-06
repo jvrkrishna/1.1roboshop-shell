@@ -82,7 +82,7 @@ maven(){
   yum install mysql -y &>>${logfile}
   status $?
   echo -e "${color}Setting mysql schema${nocolor}"
-  mysql -h mysql-dev.rkdevops.store -uroot -p$1 < /app/schema/${component}.sql &>>${logfile}
+  mysql -h mysql-dev.rkdevops.store -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${logfile}
   status $?
   service_start
 }

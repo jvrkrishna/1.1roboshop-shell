@@ -10,6 +10,6 @@ yum install ${component} -y &>>${logfile}
 status $?
 service_start
 echo -e "${color}Adding ${component} Application user${nocolor}"
-rabbitmqctl add_user roboshop roboshop123 &>>${logfile}
+rabbitmqctl add_user roboshop $1 &>>${logfile}
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${logfile}
 
