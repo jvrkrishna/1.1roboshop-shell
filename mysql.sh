@@ -11,6 +11,6 @@ echo -e "${color}Installing mysql server${nocolor}"
 yum install mysql-community-server -y &>>${logfile}
 status $?
 service_start
-echo -e "${color}Securing installation for mysql${nocolor}"
+echo -e "${color}Setting Mysql password${nocolor}"
 mysql_secure_installation --set-root-pass RoboShop@1 &>>${logfile}
 status $?
