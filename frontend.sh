@@ -11,7 +11,7 @@ curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.z
 cd /usr/share/nginx/html &>>${logfile}
 unzip /tmp/frontend.zip &>>${logfile}
 status $?
-echo -e "${color}Configuring Reverse proxy seerver${nocolor}"
+echo -e "${color}Configuring Reverse proxy server${nocolor}"
 cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${logfile}
 status $?
 echo -e "${color}Enabling and restarting Nginx Server${nocolor}"
